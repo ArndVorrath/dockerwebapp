@@ -1,23 +1,31 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Checkout SCM') {  
-            steps {
-                checkout scm
-            }
+  environment {
+    registry = "https://registry.hub.docker.com/arndvorrath/dockerwebapp"
+    registryCredential = 'DockerHub-Credentials-Arnd'
+    dockerImage = ''
+  }
+  agent any
+  stages {
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
-        stage('Docker Build') {
-           steps {
-            docker.withRegistry('https://registry.hub.docker.com/', 'DockerHub-Credentials-Arnd') {
-                def customImage = docker.build("arndvorrath/dockerwebapp")  }
-           }
-        }
-        stage('Push Container to DockerHub') {
-        /* Push the container to the custom Registry */
-            steps {
-             customImage.push()
-            }    
-        }
+      }
     }
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $registry:$BUILD_NUMBER"
+      }
+    }
+  }
 }
