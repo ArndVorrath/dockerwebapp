@@ -1,6 +1,6 @@
 pipeline {
 environment {
-registry = "https://registry.hub.docker.com/arndvorrath/dockerwebapp/"
+registry = "https://registry.hub.docker.com/arndvorrath/"
 registryCredential = 'DockerHub-Credentials-Arnd'
 dockerImage = ''
 }
@@ -16,7 +16,7 @@ dockerImage = ''
         stage('Building our image') {
             steps{
                 script {
-                    dockerImage = docker.build registry + "Build:$BUILD_NUMBER"
+                    dockerImage = docker.build registry + "dockerwebapp:$BUILD_NUMBER"
                 }
             }
         }
