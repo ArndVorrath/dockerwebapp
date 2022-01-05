@@ -10,7 +10,7 @@ pipeline {
 
         stage('Cloning our Git') {
             steps {
-                git 'https://github.com/ArndVorrath/dockerwebapp.git'
+                checkout scm
             }
         }
         stage('Building our image') {
