@@ -1,8 +1,8 @@
 pipeline {
-environment {
-registry = "https://registry.hub.docker.com/arndvorrath/"
-registryCredential = 'DockerHub-Credentials-Arnd'
-dockerImage = ''
+    environment {
+        registry = "https://registry.hub.docker.com/arndvorrath/dockerwebapp"
+        registryCredential = 'DockerHub-Credentials-Arnd'
+        dockerImage = ''
 }
     agent any
 
@@ -10,13 +10,13 @@ dockerImage = ''
 
         stage('Cloning our Git') {
             steps {
-                checkout scm
+                git 'https://github.com/ArndVorrath/dockerwebapp.git'
             }
         }
         stage('Building our image') {
             steps{
                 script {
-                    dockerImage = docker.build registry + "dockerwebapp:$BUILD_NUMBER"
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 }
             }
         }
