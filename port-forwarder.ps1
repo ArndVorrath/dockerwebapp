@@ -1,1 +1,1 @@
-kubectl port-forward pod/dockerwebapp 49160:8080
+kubectl --kubeconfig C:\Users\vorratha\.kube\config port-forward dockerwebapp 49160:8080
