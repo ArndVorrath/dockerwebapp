@@ -16,7 +16,7 @@ public class HelloWorldStepDefs {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
         options.addArguments("--disable-gpu");
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "C:\Chromedriver\chromedriver.exe");
         driver = new ChromeDriver(options);
         driver.get(url);
     }
