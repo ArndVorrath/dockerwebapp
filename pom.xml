@@ -63,7 +63,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<projectName>(insert your project name here)</projectName>
+							<projectName>dockerwebapp</projectName>
 							<outputDirectory>${project.build.directory}</outputDirectory>
 							<inputDirectory>${project.build.directory}</inputDirectory>
 							<jsonFiles>
