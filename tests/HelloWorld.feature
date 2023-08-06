@@ -1,5 +1,4 @@
-Feature: Check if "Hello World" is visible on the page
-
-  Scenario: Verify "Hello World" visibility on the page
-    Given I am on the page "http://localhost:49160/"
-    Then I should see the text "Hello World" on the page
+Feature: Verify "Hello World" on the page
+  Scenario: Check if "Hello World" is visible on page "localhost:49160/"
+    Given I open the URL "http://localhost:49160/"
+    Then I should see the text "Hello World"
